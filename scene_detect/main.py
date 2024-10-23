@@ -129,7 +129,7 @@ def resize(source_path: str, x: int, y: int, dest_path: str, overwrite: bool = F
               type=click.Path(exists=True, dir_okay=False),
               default=None)
 @click.option("-k", "--emit-keyframes",
-              help="",
+              help="Emit scene detection information, including scene detection heuristic score, frame index and time.",
               type=click.Choice(["yes", "no", "file"]),
               default="no")
 @click.option("-v", "--verbose",
