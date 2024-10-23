@@ -19,18 +19,24 @@ class DeltaResult:
         self.index = index
 
 
-def posterise(r: int, g: int, b: int) -> int:
-    return ((0b11111000 & r) << (16 - 5)) | ((0b11111000 & g) << (16 - 10)) | ((0b11111000 & b) << (16 - 15))
+def posterise(r: int, g: int, b: int, bit_depth: int = 8) -> int:
+    mask_shift = (bit_depth - 5)
+    mask = 0b11111 << mask_shift
+    return (
+            (((mask & r) >> mask_shift) << (16 - 5))
+            | (((mask & g) >> mask_shift) << (16 - 10))
+            | (((mask & b) >> mask_shift) << (16 - 15))
+    )
 
 
 def posterise_frame(frame: NDArray) -> NDArray:
-    assert frame.dtype == np.uint8
+    bit_depth = frame.dtype.itemsize * 8
 
     posterised = np.empty(frame.shape[:2], dtype=np.int16)
     for row in range(frame.shape[0]):
         for col in range(frame.shape[1]):
             r, g, b = frame[row, col]
-            posterised[row, col] = posterise(r, g, b)
+            posterised[row, col] = posterise(r, g, b, bit_depth)
 
     return posterised
 
