@@ -1,0 +1,18 @@
+[build-system]
+requires = ["setuptools"]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "scene-detect"
+version = "0.0.1"
+dependencies = [
+    "moviepy",
+    "numpy",
+    "ffmpeg-python",
+    "click",
+    "Pillow",
+    "tqdm"
+]
+
+[project.scripts]
+scene-detect = "scene_detect:scene_detect"

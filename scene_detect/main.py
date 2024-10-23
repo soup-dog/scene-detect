@@ -1,9 +1,9 @@
 import json
-import sys
-
-from util import TempFile
-
+import os
 from typing import *
+
+from .util import TempFile
+
 from moviepy.video.io.VideoFileClip import VideoFileClip, VideoClip
 import numpy as np
 from numpy.typing import NDArray
@@ -11,7 +11,6 @@ from PIL import Image
 from tqdm import tqdm
 import click
 import ffmpeg
-import os
 
 
 class DeltaResult:

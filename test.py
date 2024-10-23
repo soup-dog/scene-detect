@@ -1,4 +1,4 @@
-from main import *
+from scene_detect import *
 
 if __name__ == '__main__':
     assert posterise(0, 0, 0) == 0
